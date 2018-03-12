@@ -27,6 +27,15 @@ namespace cache_proxy
                 {
                     this.Request.Content = null;
                 }
+                else if (method == HttpMethod.Options)
+                {
+                    return new HttpResponseMessage
+                    {
+                        StatusCode = HttpStatusCode.OK,
+                        Content =
+                            new StringContent("hard coded response from cache-proxy to overcome cors", Encoding.UTF8)
+                    };
+                }
                 else
                 {
                     reqContent = await this.Request.Content.ReadAsStringAsync();
@@ -62,7 +71,7 @@ namespace cache_proxy
                 //wrap the response and return it
                 var response = new HttpResponseMessage
                 {
-                    StatusCode= mapStatus(resp.StatusCode),
+                    //StatusCode= ,
                     Content =
                         new StringContent(cachedResp, Encoding.UTF8)
                 };
