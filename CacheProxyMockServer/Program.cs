@@ -3,6 +3,7 @@ using Avalonia.ReactiveUI;
 using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace CacheProxyMockServer
 {
@@ -19,14 +20,18 @@ namespace CacheProxyMockServer
 			{
 				return;
 			}
-			// server
-			var host = new WebHostBuilder()
-				.UseKestrel()
-				.UseUrls("http://*:1234")
-				.UseStartup<Startup>()
-				.Build();
 
-			host.Run();
+			Task.Run(() => {
+				// server
+				var host = new WebHostBuilder()
+					.UseKestrel()
+					.UseUrls("http://*:1234")
+					.UseStartup<Startup>()
+					.Build();
+
+				host.Run();
+			});
+			
 			// avalonia ui
 			BuildAvaloniaApp()
 			.StartWithClassicDesktopLifetime(args);
@@ -36,7 +41,7 @@ namespace CacheProxyMockServer
 		public static AppBuilder BuildAvaloniaApp()
 			=> AppBuilder.Configure<App>()
 				.UsePlatformDetect()
-				.LogToTrace()
-				.UseReactiveUI();
+				.LogToTrace();
+				//.UseReactiveUI();
 	}
 }

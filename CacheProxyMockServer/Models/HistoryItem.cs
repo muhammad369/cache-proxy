@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace CacheProxyMockServer.Models
 {
 	[Index(nameof(MatchedRuleId))]
+	[Index(nameof(Time))]
 	public class HistoryItem
 	{
 		public int Id { get; set; }

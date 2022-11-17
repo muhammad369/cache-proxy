@@ -12,6 +12,25 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	<StackPanel>
+		<StackPanel Orientation="Horizontal" Margin="20" Spacing="20" >
+			<Button Click="RulesBtnClick"  Content=" Rules " ></Button>
+			
+		</StackPanel>
 
+
+		<StackPanel Orientation="Horizontal" Margin="20" Spacing="20" >
+			<TextBlock Text="Mode: " VerticalAlignment="Center"/>
+			<ComboBox x:Name="ModeCombo">
+				<ComboBoxItem>Proxy Only</ComboBoxItem>
+				<ComboBoxItem>Cache Only</ComboBoxItem>
+				<ComboBoxItem>Cache-Proxy</ComboBoxItem>
+			</ComboBox>
+			<TextBlock Text="Simulated Delay (Seconds): "  VerticalAlignment="Center"></TextBlock>
+			<NumericUpDown x:Name="DelayNumeric" Value="0" Increment="1" Minimum="0" Maximum="600" Width="150"/>
+		</StackPanel>
+		
+	</StackPanel>
+	
+    
 </Window>
