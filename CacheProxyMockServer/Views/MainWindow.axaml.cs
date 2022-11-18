@@ -1,13 +1,20 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using CacheProxyMockServer.Models;
+using CacheProxyMockServer.ViewModels;
+using System.Collections.Generic;
 
 namespace CacheProxyMockServer.Views
 {
 	public partial class MainWindow : Window
 	{
 
+		public static MainWindow Instance;
+
 		public MainWindow()
 		{
+			Instance = this; 
+			//
 			InitializeComponent();
 			this.Closing += (s, e) =>
 			{

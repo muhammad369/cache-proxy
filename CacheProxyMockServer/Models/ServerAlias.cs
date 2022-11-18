@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace CacheProxyMockServer.Models
 {
 	[Index(nameof(Name), nameof(IsActive))]
+	[Index(nameof(Name), IsUnique = true)]
 	public class ServerAlias
 	{
 		public int Id { get; set; }
