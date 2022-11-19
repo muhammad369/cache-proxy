@@ -1,0 +1,27 @@
+<Window xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             x:Class="CacheProxyMockServer.Views.RequestDetailsView">
+
+	<DockPanel Margin="0">
+		<StackPanel >
+			<StackPanel Orientation="Horizontal" Margin="10" Spacing="5">
+				<ComboBox Width="150"/>
+				<TextBox Width="400"/>
+			</StackPanel>
+			<TextBox AcceptsReturn="True" TextWrapping="Wrap" Height="200" Margin="10 0 10 10"/>
+
+			<Label Content="Response" Margin="10 0 0 0"/>
+			
+			<StackPanel Orientation="Horizontal" Margin="10">
+				<ComboBox Width="150"/>
+			</StackPanel>
+			<TextBox AcceptsReturn="True" TextWrapping="Wrap" Height="200" Margin="10 0 10 10"/>
+		</StackPanel>
+	</DockPanel>
+	
+	
+	
+</Window>

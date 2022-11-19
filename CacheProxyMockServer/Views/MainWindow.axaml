@@ -35,7 +35,7 @@
 		</StackPanel>
 
 		<!-- history items -->
-		<ListBox  Items="{Binding historyItems}" VerticalAlignment="Stretch" >
+		<ListBox  Items="{Binding historyItems}" VerticalAlignment="Stretch">
 
 		</ListBox>
 		
