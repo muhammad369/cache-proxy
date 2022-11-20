@@ -6,7 +6,11 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="CacheProxyMockServer.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="CacheProxyMockServer">
+        Title="CacheProxyMockServer"
+		TransparencyLevelHint="AcrylicBlur"
+		Background="Transparent"
+		ExtendClientAreaToDecorationsHint="True"
+		>
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
@@ -35,7 +39,7 @@
 		</StackPanel>
 
 		<!-- history items -->
-		<ListBox  Items="{Binding historyItems}" VerticalAlignment="Stretch">
+		<ListBox  Items="{Binding historyItems}" VerticalAlignment="Stretch" Margin="10 0 10 0">
 
 		</ListBox>
 		

@@ -3,7 +3,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
-             x:Class="CacheProxyMockServer.Views.RequestDetailsView">
+             x:Class="CacheProxyMockServer.Views.RequestDetailsView"
+			 TransparencyLevelHint="AcrylicBlur"
+			Background="Transparent"
+			ExtendClientAreaToDecorationsHint="True"
+			>
 
 	<DockPanel Margin="0">
 		<StackPanel >
