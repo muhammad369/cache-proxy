@@ -5,7 +5,9 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cache-proxy(old)", "cache-proxy\cache-proxy(old).csproj", "{58116AFF-6841-453A-B09D-9BD71965CFDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CacheProxyMockServer", "CacheProxyMockServer\CacheProxyMockServer.csproj", "{0AC6CEB7-AB86-4E76-A85E-34082EB6DF0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CacheProxyMockServer", "CacheProxyMockServer\CacheProxyMockServer.csproj", "{A4BD1EB3-E4E6-4390-9EE6-EE1ED016B242}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CacheProxy_MockServer", "CacheProxy_MockServer\CacheProxy_MockServer.csproj", "{05D902FD-8B81-44FC-84C7-CBE0826DB2C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,14 @@ Global
 		{58116AFF-6841-453A-B09D-9BD71965CFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58116AFF-6841-453A-B09D-9BD71965CFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58116AFF-6841-453A-B09D-9BD71965CFDF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0AC6CEB7-AB86-4E76-A85E-34082EB6DF0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0AC6CEB7-AB86-4E76-A85E-34082EB6DF0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0AC6CEB7-AB86-4E76-A85E-34082EB6DF0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0AC6CEB7-AB86-4E76-A85E-34082EB6DF0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4BD1EB3-E4E6-4390-9EE6-EE1ED016B242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4BD1EB3-E4E6-4390-9EE6-EE1ED016B242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4BD1EB3-E4E6-4390-9EE6-EE1ED016B242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4BD1EB3-E4E6-4390-9EE6-EE1ED016B242}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05D902FD-8B81-44FC-84C7-CBE0826DB2C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05D902FD-8B81-44FC-84C7-CBE0826DB2C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05D902FD-8B81-44FC-84C7-CBE0826DB2C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05D902FD-8B81-44FC-84C7-CBE0826DB2C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

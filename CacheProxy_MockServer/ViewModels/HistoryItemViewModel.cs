@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace CacheProxyMockServer.ViewModels
 {
-	public class HistoryItemViewModel
+	public class HistoryItemViewModel : ViewModelBase
 	{
+
+		public HistoryItemViewModel() { }
+
 		public int Id { get; set; }
 
 		public string Method { get; set; }
@@ -18,5 +21,16 @@ namespace CacheProxyMockServer.ViewModels
 		public bool FromCache { get; set; }
 
 		public int MatchedRuleId { get; set; }
+
+
+		public void OpenRuleWindow()
+		{
+
+		}
+
+		public void ShowDetails()
+		{
+
+		}
 	}
 }

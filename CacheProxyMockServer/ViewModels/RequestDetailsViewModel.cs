@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CacheProxyMockServer.ViewModels
 {
-	public class RequestDetailsViewModel: ViewModelBase
+	public class RequestDetailsViewModel
 	{
 		public int Id { get; set; }
 

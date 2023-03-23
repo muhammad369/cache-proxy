@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace CacheProxyMockServer.ViewModels
 {
-	public class RuleItemViewModel
+	public class RequestDetailsViewModel: ViewModelBase
 	{
-
-
 		public int Id { get; set; }
 
 		public string Method { get; set; }
 		public string Url { get; set; }
-		public string RequestBody { get; set; }
+		public string? RequestBody { get; set; }
 
 		public bool IsActive { get; set; } = true;
 		public bool IsUrlTemplate { get; set; } = false;

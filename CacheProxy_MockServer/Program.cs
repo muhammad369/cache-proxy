@@ -1,8 +1,9 @@
 ﻿using Avalonia;
+using Avalonia.ReactiveUI;
+using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
 
 namespace CacheProxyMockServer
 {
@@ -14,7 +15,6 @@ namespace CacheProxyMockServer
 		[STAThread]
 		public static void Main(string[] args)
 		{
-
 			// prevent more than one app instance
 			if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1)
 			{
@@ -31,7 +31,7 @@ namespace CacheProxyMockServer
 
 				host.Run();
 			});
-
+			
 			// avalonia ui
 			BuildAvaloniaApp()
 			.StartWithClassicDesktopLifetime(args);
@@ -42,5 +42,6 @@ namespace CacheProxyMockServer
 			=> AppBuilder.Configure<App>()
 				.UsePlatformDetect()
 				.LogToTrace();
+				//.UseReactiveUI();
 	}
 }
