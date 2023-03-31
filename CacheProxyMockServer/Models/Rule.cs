@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CacheProxyMockServer.Models
 {
 	[Index(nameof(Method), nameof(Url), nameof(RequestBody), 
-		nameof(IsActive), nameof(IsBodyTemplate), nameof(IsUrlTemplate))]
+		nameof(IsActive))]
 	public class Rule
 	{
 		public int Id { get; set; }
@@ -18,8 +18,8 @@ namespace CacheProxyMockServer.Models
 		public string? RequestBody { get; set; }
 
 		public bool IsActive { get; set; } = true;
-		public bool IsUrlTemplate { get; set; } = false;
-		public bool IsBodyTemplate { get; set; } = false;
+		//public bool IsUrlTemplate { get; set; } = false;
+		//public bool IsBodyTemplate { get; set; } = false;
 
 		public int ResponseStatus { get; set; }
 		public string ResponseContent { get; set; }

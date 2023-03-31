@@ -9,12 +9,12 @@ namespace CacheProxyMockServer.Models
 {
 	[Index(nameof(Name), nameof(IsActive))]
 	[Index(nameof(Name), IsUnique = true)]
-	public class ServerAlias
+	public class ServerRename
 	{
 		public int Id { get; set; }
 
 		public string Name { get; set; }
-		public string Alias { get; set; }
+		public string Rename { get; set; }
 
 		public bool IsActive { get; set; } = true;
 	}

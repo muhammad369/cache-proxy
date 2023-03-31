@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using CacheProxyMockServer.Http;
+using CacheProxyMockServer.Models;
+using CacheProxyMockServer.Repositories;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -13,6 +16,9 @@ namespace CacheProxyMockServer
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllers();
+			services.AddScoped<IHttpService>(sp => new HttpService());
+			services.AddScoped<UnitOfWork>();
+			services.AddDbContext<AppDbContext>();
 		}
 
 		public void Configure(IApplicationBuilder app)

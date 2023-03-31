@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CacheProxyMockServer.Models
 {
-	[Index(nameof(Name))]
+	[Index(nameof(Name), IsUnique =true)]
 	public class Setting
 	{
 		public int Id { get; set; }
