@@ -15,7 +15,7 @@ namespace CacheProxyMockServer.Repositories
 		{
 		}
 
-		public object GetMatchedRule(HttpRequestMessage request)
+		public Rule GetMatchedRule(HttpRequestMessage request)
 		{
 			return FindSingle(r => r.IsActive 
 								&& r.Method == request.Method.Method 

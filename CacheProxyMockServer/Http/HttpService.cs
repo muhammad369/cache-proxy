@@ -21,7 +21,7 @@ namespace CacheProxyMockServer.Http
 		{
 			using (var client = new HttpClient())
 			{
-				client.SendAsync();
+				return client.SendAsync(request);
 			}
 
 		}

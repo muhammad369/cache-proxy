@@ -1,10 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CacheProxyMockServer.Models
 {
@@ -22,6 +18,8 @@ namespace CacheProxyMockServer.Models
 
 
 		public int ResponseStatus { get; set; }
+		public string? ResponseReason { get; set; }
+		public string ResponseContentType { get; set; }
 		public string ResponseHeaders { get; set; }
 		public string ResponseContent { get; set; }
 
@@ -32,4 +30,23 @@ namespace CacheProxyMockServer.Models
 		public int MatchedRuleId { get; set; }
 		public Rule MatchedRule { get; set; }
 	}
+
+	public static class HistoryItemExtensions
+	{
+		public static HistoryItem FromRule(this HistoryItem h, Rule rule)
+		{
+			h.Method = rule.Method;
+			h.Url = rule.Url;
+			h.RequestContent = rule.RequestBody;
+			h.ResponseStatus = rule.ResponseStatus;
+			h.ResponseReason = rule.ResponseReason;
+			h.ResponseContentType = rule.ResponseContentType;
+			h.ResponseContent = rule.ResponseContent;
+			h.ResponseHeaders = rule.ResponseHeaders;
+			h.MatchedRuleId = rule.Id;
+			//
+			return h;
+		}
+	}
+
 }

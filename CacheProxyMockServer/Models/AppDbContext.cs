@@ -11,11 +11,12 @@ namespace CacheProxyMockServer.Models
 	{
 		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
 		{
+			
 		}
 
 		public virtual DbSet<HistoryItem> HistoryItems { get; set; }
 		public virtual DbSet<Rule> Rules { get; set; }
-		public virtual DbSet<ServerRename> ServerAliases { get; set; }
+		public virtual DbSet<ServerRename> ServerRenames { get; set; }
 		public virtual DbSet<Setting> Settings { get; set; }
 	}
 }

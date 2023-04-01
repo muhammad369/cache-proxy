@@ -7,6 +7,10 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Mvc;
+using CacheProxyMockServer.Models;
+using System.Net.Http.Headers;
 
 namespace CacheProxyMockServer.Http
 {
@@ -112,9 +116,19 @@ namespace CacheProxyMockServer.Http
 			var arr = new String[3];
 			var url1 = url.Split("//");
 			arr[0] = url1[0];
+			// TODO: take index of '?'
 			var slashIndex = url1[1].IndexOf('/');
-			arr[1] = url1[1].Substring(0, slashIndex);
-			arr[2] = url1[1].Substring(slashIndex+1);
+			if (slashIndex == -1)
+			{
+				arr[1] = url1[1];
+				arr[2] = "";
+			}
+			else
+			{
+				arr[1] = url1[1].Substring(0, slashIndex);
+				arr[2] = url1[1].Substring(slashIndex + 1);
+
+			}
 			//
 			return arr;
 		}
@@ -122,4 +136,141 @@ namespace CacheProxyMockServer.Http
 
 
 	}
+
+	public static class HeadersHelpers
+	{
+		public static string GetHeadersString(this HttpRequestMessage req)
+		{
+			return String.Join("\n", req.Headers.Select(h => $"{h.Key}:{string.Join(",", h.Value)}"));
+		}
+
+		public static string GetHeadersString(this HttpResponseMessage resp)
+		{
+			return String.Join("\n", resp.Headers.Select(h => $"{h.Key}:{string.Join(",", h.Value)}"));
+		}
+
+	}
+
+	public class HttpResponseMessageResult : IActionResult
+	{
+		private readonly HttpResponseMessage _responseMessage;
+
+		public HttpResponseMessageResult(HttpResponseMessage responseMessage)
+		{
+			_responseMessage = responseMessage; // could add throw if null
+		}
+
+		public async Task ExecuteResultAsync(ActionContext context)
+		{
+			var response = context.HttpContext.Response;
+
+
+			if (_responseMessage == null)
+			{
+				var message = "Response message cannot be null";
+
+				throw new InvalidOperationException(message);
+			}
+
+			using (_responseMessage)
+			{
+				response.StatusCode = (int)_responseMessage.StatusCode;
+
+				var responseFeature = context.HttpContext.Features.Get<IHttpResponseFeature>();
+				if (responseFeature != null)
+				{
+					responseFeature.ReasonPhrase = _responseMessage.ReasonPhrase;
+				}
+
+				var responseHeaders = _responseMessage.Headers;
+
+				// Ignore the Transfer-Encoding header if it is just "chunked".
+				// We let the host decide about whether the response should be chunked or not.
+				if (responseHeaders.TransferEncodingChunked == true &&
+					responseHeaders.TransferEncoding.Count == 1)
+				{
+					responseHeaders.TransferEncoding.Clear();
+				}
+
+				foreach (var header in responseHeaders)
+				{
+					response.Headers.Append(header.Key, header.Value.ToArray());
+				}
+
+				if (_responseMessage.Content != null)
+				{
+					var contentHeaders = _responseMessage.Content.Headers;
+
+					// Copy the response content headers only after ensuring they are complete.
+					// We ask for Content-Length first because HttpContent lazily computes this
+					// and only afterwards writes the value into the content headers.
+					var unused = contentHeaders.ContentLength;
+
+					foreach (var header in contentHeaders)
+					{
+						response.Headers.Append(header.Key, header.Value.ToArray());
+					}
+
+					await _responseMessage.Content.CopyToAsync(response.Body);
+				}
+			}
+		}
+
+	}
+
+	public class CachedResponseResult : IActionResult
+	{
+		private readonly Rule _rule;
+
+		public CachedResponseResult(Rule rule)
+		{
+			_rule = rule; // could add throw if null
+		}
+
+		public async Task ExecuteResultAsync(ActionContext context)
+		{
+			var response = context.HttpContext.Response;
+
+
+			if (_rule == null)
+			{
+				var message = "Response message cannot be null";
+
+				throw new InvalidOperationException(message);
+			}
+
+
+			response.StatusCode = _rule.ResponseStatus;
+
+			var responseFeature = context.HttpContext.Features.Get<IHttpResponseFeature>();
+			if (responseFeature != null)
+			{
+				responseFeature.ReasonPhrase = _rule.ResponseReason;
+			}
+
+			var responseHeaders = _rule.ResponseHeaders;
+
+
+
+			foreach (var header in responseHeaders.Split("\n"))
+			{
+				var headerParts = header.Split(":");
+				response.Headers.Append(headerParts[0], headerParts[1]);
+			}
+
+			if (_rule.ResponseContent != null)
+			{
+				var bytes = Encoding.UTF8.GetBytes(_rule.ResponseContent);
+
+				response.ContentType = _rule.ResponseContentType;
+				response.ContentLength = bytes.Length;
+
+
+				await response.Body.WriteAsync(bytes, 0, bytes.Length);
+			}
+
+		}
+
+	}
+
 }
