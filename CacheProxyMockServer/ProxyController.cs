@@ -4,6 +4,7 @@ using CacheProxyMockServer.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,19 +31,18 @@ namespace CacheProxyMockServer
 		readonly IHttpService http;
 		readonly UnitOfWork uow;
 
-		public ProxyController()//IHttpService http, UnitOfWork uow)
+		public ProxyController(IHttpService http, UnitOfWork uow)
 		{
-			//this.http = http;
-			//this.uow = uow;
-			http = new HttpService();
+			this.http = http;
+			this.uow = uow;
 
-			DbContextOptions<AppDbContext> options;
-			var builder = new DbContextOptionsBuilder<AppDbContext>();
-			builder.UseInMemoryDatabase("db");
+			//DbContextOptions<AppDbContext> options;
+			//var builder = new DbContextOptionsBuilder<AppDbContext>();
+			//builder.UseInMemoryDatabase("db");
 
-			options = builder.Options;
+			//options = builder.Options;
 
-			uow = new UnitOfWork(new AppDbContext(options));
+			//uow = new UnitOfWork(new AppDbContext(options));
 		}
 
 
@@ -50,7 +50,6 @@ namespace CacheProxyMockServer
 		[Route("/")]
 		public async Task<IActionResult> Home([FromQuery(Name = "url")] string url)
 		{
-			var request = Request.ToHttpRequestMessage();
 			var urlParts = UrlHelpers.SplitUrl(url);
 
 			//
@@ -64,7 +63,8 @@ namespace CacheProxyMockServer
 				url = $"{urlParts[0]}//{rename}/{urlParts[2]}";
 			}
 
-			request.RequestUri = new Uri(url);
+			var request = Request.ToHttpRequestMessage(url);
+			//request.RequestUri = new Uri(url);
 
 			//
 			// get the response

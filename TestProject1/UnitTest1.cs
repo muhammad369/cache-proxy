@@ -31,8 +31,9 @@ namespace TestProject1
 			var url = "https://google.com";
 
 			var httpclient = new HttpClient();
-			httpclient.BaseAddress = new Uri(url);
-			var response = await httpclient.GetAsync(url);
+			var req = new HttpRequestMessage(HttpMethod.Get, url);
+			
+			var response = await httpclient.SendAsync(req);
 			var result = await response.Content.ReadAsStringAsync();
 		}
 	}

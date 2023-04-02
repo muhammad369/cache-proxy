@@ -17,12 +17,14 @@ namespace CacheProxyMockServer
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddControllers();
-			//services.AddScoped<IHttpService>(sp => new HttpService());
-			//services.AddScoped<UnitOfWork>();
+			services.AddHttpClient();
+			
+			services.AddScoped<IHttpService, HttpService>();
+			services.AddScoped<UnitOfWork, UnitOfWork>();
 			//
 			// testing db
 			
-			//services.AddDbContext<AppDbContext>(options=> options.UseInMemoryDatabase("db"));
+			services.AddDbContext<AppDbContext>(options=> options.UseInMemoryDatabase("db"));
 		}
 
 		public void Configure(IApplicationBuilder app)

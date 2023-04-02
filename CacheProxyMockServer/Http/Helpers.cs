@@ -113,7 +113,7 @@ namespace CacheProxyMockServer.Http
 		/// <returns></returns>
 		public static string[] SplitUrl(string url)
 		{
-			var arr = new String[3];
+			var arr = new string[3];
 			var url1 = url.Split("//");
 			arr[0] = url1[0];
 			// TODO: take index of '?'
@@ -141,12 +141,12 @@ namespace CacheProxyMockServer.Http
 	{
 		public static string GetHeadersString(this HttpRequestMessage req)
 		{
-			return String.Join("\n", req.Headers.Select(h => $"{h.Key}:{string.Join(",", h.Value)}"));
+			return string.Join("\n", req.Headers.Select(h => $"{h.Key}:{string.Join(",", h.Value)}"));
 		}
 
 		public static string GetHeadersString(this HttpResponseMessage resp)
 		{
-			return String.Join("\n", resp.Headers.Select(h => $"{h.Key}:{string.Join(",", h.Value)}"));
+			return string.Join("\n", resp.Headers.Select(h => $"{h.Key}:{string.Join(",", h.Value)}"));
 		}
 
 	}

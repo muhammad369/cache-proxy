@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CacheProxyMockServer.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace CacheProxyMockServer.Repositories
 {
 	public class UnitOfWork
 	{
-		private readonly DbContext dc;
+		private readonly AppDbContext dc;
 
 		public HistoryItemsRepository HistoryItemsRepo { get; }
 		public RulesRepository RulesRepo { get; }
@@ -17,7 +18,7 @@ namespace CacheProxyMockServer.Repositories
 		public SettingsRepository SettingsRepo { get; }
 
 
-		public UnitOfWork(DbContext dc)
+		public UnitOfWork(AppDbContext dc)
 		{
 			this.dc = dc;
 			//
