@@ -43,7 +43,8 @@ namespace CacheProxyMockServer.Models
 			h.ResponseContentType = rule.ResponseContentType;
 			h.ResponseContent = rule.ResponseContent;
 			h.ResponseHeaders = rule.ResponseHeaders;
-			h.MatchedRuleId = rule.Id;
+			//h.MatchedRuleId = rule.Id;
+			h.MatchedRule = rule;
 			//
 			return h;
 		}

@@ -3,6 +3,9 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using CacheProxyMockServer.Models;
 
 namespace CacheProxyMockServer
 {
@@ -16,11 +19,22 @@ namespace CacheProxyMockServer
 		{
 
 			// prevent more than one app instance
+			//
 			if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Length > 1)
 			{
 				return;
 			}
 
+			// init the db
+			//
+			//using (var db = new AppDbContext())
+			//{
+			//	db.Database.EnsureCreated();
+			//	db.Database.Migrate();
+			//}
+
+			// run the server
+			//
 			Task.Run(() => {
 				// server
 				var host = new WebHostBuilder()
@@ -33,6 +47,7 @@ namespace CacheProxyMockServer
 			});
 
 			// avalonia ui
+			//
 			BuildAvaloniaApp()
 			.StartWithClassicDesktopLifetime(args);
 		}
@@ -42,5 +57,12 @@ namespace CacheProxyMockServer
 			=> AppBuilder.Configure<App>()
 				.UsePlatformDetect()
 				.LogToTrace();
+
+
+		static IHostBuilder CreateHostBuilder(string[] args)
+		{
+			return Host.CreateDefaultBuilder(args);
+			
+		}
 	}
 }

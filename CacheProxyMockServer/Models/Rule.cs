@@ -45,7 +45,7 @@ namespace CacheProxyMockServer.Models
 		public static async Task<Rule> FromRequestResponseAsync(this Rule rule, HttpRequestMessage req, HttpResponseMessage resp)
 		{
 			rule.Method = req.Method.ToString();
-			rule.Url = req.RequestUri?.OriginalString;
+			rule.Url = req.RequestUri?.AbsoluteUri;
 			rule.IsActive = true;
 			rule.RequestBody = await req.Content.ReadAsStringAsync();
 			rule.ResponseStatus = (int)resp.StatusCode;

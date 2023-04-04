@@ -15,12 +15,14 @@ namespace CacheProxyMockServer.Repositories
 		{
 		}
 
-		public Rule GetMatchedRule(HttpRequestMessage request)
+		public async Task<Rule?> GetMatchedRule(HttpRequestMessage request)
 		{
-			return FindSingle(r => r.IsActive 
+			
+			var content = await request.Content.ReadAsStringAsync();
+			return GetAll().FirstOrDefault(r => r.IsActive 
 								&& r.Method == request.Method.Method 
 								&& r.Url == request.RequestUri.AbsoluteUri 
-								&& r.RequestBody == request.Content.ToString()
+								&& (r.RequestBody ?? "") == content
 								);
 		}
 	}

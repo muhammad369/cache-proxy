@@ -11,7 +11,10 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http.Results;
+using BadRequestResult = Microsoft.AspNetCore.Mvc.BadRequestResult;
 using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
+using OkResult = Microsoft.AspNetCore.Mvc.OkResult;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 
 namespace CacheProxyMockServer
@@ -21,7 +24,7 @@ namespace CacheProxyMockServer
 		/// <summary>
 		/// Is proxy or cache
 		/// </summary>
-		public static bool IsProxy = true;
+		public static bool IsProxy = false;
 		/// <summary>
 		/// Simulated delay in seconds
 		/// </summary>
@@ -35,14 +38,6 @@ namespace CacheProxyMockServer
 		{
 			this.http = http;
 			this.uow = uow;
-
-			//DbContextOptions<AppDbContext> options;
-			//var builder = new DbContextOptionsBuilder<AppDbContext>();
-			//builder.UseInMemoryDatabase("db");
-
-			//options = builder.Options;
-
-			//uow = new UnitOfWork(new AppDbContext(options));
 		}
 
 
@@ -50,68 +45,81 @@ namespace CacheProxyMockServer
 		[Route("/")]
 		public async Task<IActionResult> Home([FromQuery(Name = "url")] string url)
 		{
-			var urlParts = UrlHelpers.SplitUrl(url);
-
-			//
-			// check server rename
-			//
-
-			var rename = uow.ServerRenamesRepo.GetRenameFor(urlParts[1]);
-
-			if (rename != null)
+			try
 			{
-				url = $"{urlParts[0]}//{rename}/{urlParts[2]}";
-			}
+				var urlParts = UrlHelpers.SplitUrl(url);
 
-			var request = Request.ToHttpRequestMessage(url);
-			//request.RequestUri = new Uri(url);
+				//
+				// check server rename
+				//
 
-			//
-			// get the response
-			//
+				var rename = uow.ServerRenamesRepo.GetRenameFor(urlParts[1]);
 
-			IActionResult resp = null;
-			var matchedRule = uow.RulesRepo.GetMatchedRule(request);
-			Rule newRule = null;
-			bool fromCache = false;
-
-			if (IsProxy || matchedRule == null)
-			{
-				var r = await http.sendRequest(request);
-				resp = new HttpResponseMessageResult(r);
-				// new rule
-				newRule = await new Rule().FromRequestResponseAsync(request, r);
-			}
-			else
-			{
-				if (SimulatedDelay > 0)
+				if (rename != null)
 				{
-					await Task.Delay(SimulatedDelay * 1000);
+					url = $"{urlParts[0]}//{rename}/{urlParts[2]}";
 				}
-				// load response from cache (the matched rule)
-				resp = matchedRule.ToResponse();
-				fromCache = true;
-			}
 
-			//
-			// add a rule and history
-			//
+				var request = Request.ToHttpRequestMessage();
+				request.RequestUri = new Uri(url);
 
-			if (matchedRule == null)
-			{
-				// add a new rule
-				uow.RulesRepo.Add(newRule);
-			}
+				//
+				// get the response
+				//
 
-			// add a history item
-			var hi = new HistoryItem() { FromCache = fromCache, Time = DateTime.Now }
+				IActionResult resp = null;
+				var matchedRule = await uow.RulesRepo.GetMatchedRule(request);
+				Rule newRule = null;
+				bool fromCache = false;
+
+				if (IsProxy || matchedRule == null)
+				{
+					var r = await http.sendRequest(request);
+					resp = new HttpResponseMessageResult(r);
+					// new rule
+					newRule = await new Rule().FromRequestResponseAsync(request, r);
+				}
+				else
+				{
+					if (SimulatedDelay > 0)
+					{
+						await Task.Delay(SimulatedDelay * 1000);
+					}
+					// load response from cache (the matched rule)
+					resp = matchedRule.ToResponse();
+					fromCache = true;
+				}
+
+				//
+				// add a rule and history
+				//
+
+				if (matchedRule == null)
+				{
+					// add a new rule
+					uow.RulesRepo.Add(newRule);
+				}
+
+				// add a history item
+				var hi = new HistoryItem() 
+				{ 
+					FromCache = fromCache, Time = DateTime.Now, 
+					RequestHeaders = request.GetHeadersString() 
+				}
 				.FromRule(matchedRule ?? newRule);
-			uow.HistoryItemsRepo.Add(hi);
-			uow.Save();
+				uow.HistoryItemsRepo.Add(hi);
+				uow.Save();
 
-			// return the response
+				// return the response
 
-			return resp;
+				return resp;
+			}
+			catch(Exception ex)
+			{
+				//return new OkResult();
+				await Response.WriteAsync($"title: error from CacheProxyMockServer, exception: {ex}");
+				return new Microsoft.AspNetCore.Mvc.StatusCodeResult(500) { };
+			}
 		}
 
 		[HttpGet, HttpPost, HttpPatch, HttpPut, HttpOptions, HttpOptions, HttpDelete, HttpHead]

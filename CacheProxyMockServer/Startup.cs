@@ -18,13 +18,14 @@ namespace CacheProxyMockServer
 		{
 			services.AddControllers();
 			services.AddHttpClient();
-			
+			//
 			services.AddScoped<IHttpService, HttpService>();
 			services.AddScoped<UnitOfWork, UnitOfWork>();
 			//
-			// testing db
-			
-			services.AddDbContext<AppDbContext>(options=> options.UseInMemoryDatabase("db"));
+
+			//services.AddDbContext<AppDbContext>(options=> options.UseInMemoryDatabase("db"));
+			//services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=./db.sqlite"));
+			services.AddDbContext<AppDbContext>();
 		}
 
 		public void Configure(IApplicationBuilder app)
@@ -34,6 +35,7 @@ namespace CacheProxyMockServer
 			{
 				endpoints.MapControllers();
 			});
+			app.UseDeveloperExceptionPage();
 		}
 	}
 }

@@ -254,8 +254,13 @@ namespace CacheProxyMockServer.Http
 
 			foreach (var header in responseHeaders.Split("\n"))
 			{
-				var headerParts = header.Split(":");
-				response.Headers.Append(headerParts[0], headerParts[1]);
+				var columnIndex = header.IndexOf(":");
+				var key = header.Substring(0, columnIndex);
+				var value = header.Substring(columnIndex + 1);
+
+				if (key == "Transfer-Encoding") continue;
+
+				response.Headers.Append(key, value);
 			}
 
 			if (_rule.ResponseContent != null)
