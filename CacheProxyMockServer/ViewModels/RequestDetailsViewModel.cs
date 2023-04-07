@@ -8,13 +8,19 @@ namespace CacheProxyMockServer.ViewModels
 {
 	public class RequestDetailsViewModel
 	{
+
+		public RequestDetailsViewModel() 
+		{ 
+			
+		}
+
 		public int Id { get; set; }
 
 		public string Method { get; set; }
 		public string Url { get; set; }
 		public string? RequestBody { get; set; }
 
-		public bool IsActive { get; set; } = true;
+		//public bool IsActive { get; set; } = true;
 		public bool IsUrlTemplate { get; set; } = false;
 		public bool IsBodyTemplate { get; set; } = false;
 

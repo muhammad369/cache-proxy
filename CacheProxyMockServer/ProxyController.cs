@@ -111,13 +111,14 @@ namespace CacheProxyMockServer
 				uow.Save();
 
 				// return the response
+				MainWindow.Instance.RefreshHistory();
 
 				return resp;
 			}
 			catch(Exception ex)
 			{
 				//return new OkResult();
-				await Response.WriteAsync($"title: error from CacheProxyMockServer, exception: {ex}");
+				await Response.WriteAsync($" (error from CacheProxyMockServer)\r\n exception: {ex}");
 				return new Microsoft.AspNetCore.Mvc.StatusCodeResult(500) { };
 			}
 		}

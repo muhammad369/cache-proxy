@@ -5,9 +5,15 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="CacheProxyMockServer.MainWindow"
         Title="CacheProxyMockServer"
-		TransparencyLevelHint="AcrylicBlur"
+		TransparencyLevelHint="Blur"
 		Background="Transparent"
 		ExtendClientAreaToDecorationsHint="True"
+		Icon="/Assets/logo.ico"
+		ShowInTaskbar="False"
+		Topmost="True"
+		Opacity="1"
+		SizeToContent="Width"
+		ShowActivated="True"
 		>
 	<DockPanel >
 
@@ -28,11 +34,11 @@
 				<ComboBoxItem>Cache</ComboBoxItem>
 			</ComboBox>
 			<TextBlock Text="Simulated Delay (Seconds): "  VerticalAlignment="Center"></TextBlock>
-			<NumericUpDown x:Name="DelayNumeric" Value="0" Increment="1" Minimum="0" Maximum="600" Width="150"/>
+			<NumericUpDown x:Name="DelayNumeric" Value="0" Increment="1" Minimum="0" Maximum="600" Width="150" FormatString="###"/>
 		</StackPanel>
 
 		<!-- history items -->
-		<ListBox  Items="{Binding historyItems}" VerticalAlignment="Stretch" Margin="10 0 10 0">
+		<ListBox x:Name="historyItemsList" Items="{Binding historyItems}" VerticalAlignment="Stretch" Margin="10 0 10 0">
 
 		</ListBox>
 

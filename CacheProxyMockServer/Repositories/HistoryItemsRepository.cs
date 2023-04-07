@@ -17,7 +17,7 @@ namespace CacheProxyMockServer.Repositories
 		}
 
 
-		List<HistoryItem> getPage(int pageIndex, int pageSize)
+		public List<HistoryItem> GetPage(int pageIndex, int pageSize)
 		{
 			return GetAll().OrderByDescending(h => h.Time).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 		}

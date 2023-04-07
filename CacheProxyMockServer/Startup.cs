@@ -14,15 +14,18 @@ namespace CacheProxyMockServer
 {
 	public class Startup
 	{
+		//public static ServiceProvider services;
+
 		public void ConfigureServices(IServiceCollection services)
 		{
+			//Startup.services = services.BuildServiceProvider();
+			//
 			services.AddControllers();
 			services.AddHttpClient();
 			//
 			services.AddScoped<IHttpService, HttpService>();
 			services.AddScoped<UnitOfWork, UnitOfWork>();
 			//
-
 			//services.AddDbContext<AppDbContext>(options=> options.UseInMemoryDatabase("db"));
 			//services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=./db.sqlite"));
 			services.AddDbContext<AppDbContext>();

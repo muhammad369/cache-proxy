@@ -7,7 +7,7 @@
         <FluentTheme Mode="Light"/>
     </Application.Styles>
 
-	<TrayIcon.Icons>
+	<!--<TrayIcon.Icons>
 		<TrayIcons>
 			<TrayIcon Icon="/Assets/avalonia-logo.ico" ToolTipText="Avalonia Tray Icon ToolTip">
 				<TrayIcon.Menu>
@@ -22,11 +22,11 @@
 								<NativeMenuItem Header="Disabled option" IsEnabled="False" />
 							</NativeMenu>
 						</NativeMenuItem>
-						<NativeMenuItem Header="Exit" Command="{Binding ExitCommand}" />
+						<NativeMenuItem x:Name="exitMenuItem" Header="Exit" />
 					</NativeMenu>
 				</TrayIcon.Menu>
 			</TrayIcon>
 		</TrayIcons>
-	</TrayIcon.Icons>
+	</TrayIcon.Icons>-->
 	
 </Application>

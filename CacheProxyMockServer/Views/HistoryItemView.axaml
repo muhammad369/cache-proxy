@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="400"
+             x:Class="CacheProxyMockServer.Views.HistoryItemView">
+
+	<StackPanel Orientation="Horizontal"  Spacing="2">
+		<TextBlock x:Name="txtMethod" VerticalAlignment="Center" Width="50"/>
+		<TextBlock x:Name="txtUrl" VerticalAlignment="Center" Width="400"/>
+		<TextBlock x:Name="txtTime" VerticalAlignment="Center" Width="150"/>
+		<TextBlock x:Name="txtLiveOrCache" VerticalAlignment="Center" Width="70"/>
+
+		<Button x:Name="btnRule"  Content="Rule"/>
+		<Button x:Name="btnDetails"  Content="Details"/>
+		<!--<Button Click="ResendBtnClick"  Content="Resend"/>-->
+		
+	</StackPanel>
+	
+</UserControl>
