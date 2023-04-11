@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="700" 
+        x:Class="CacheProxyMockServer.Views.HeaderEditView"
+        Title="Header">
+	<StackPanel >
+		<Label Content="Key: " Margin="10 10 0 0"/>
+		
+		<TextBox x:Name="txtKey"  Margin="10 0 10 10"/>
+
+		<Label Content="Value: " Margin="10 0 0 0"/>
+		<TextBox x:Name="txtValue" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+				 ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" 
+				 TextWrapping="Wrap" Height="200" Margin="10 0 10 10"/>
+
+		<StackPanel Orientation="Horizontal" Margin="10 0 10 10" HorizontalAlignment="Center" >
+			<Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left"></Button>
+			<TextBlock Width="550"  HorizontalAlignment="Left"></TextBlock>
+			<Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left"></Button>
+		</StackPanel>
+	</StackPanel>
+</Window>

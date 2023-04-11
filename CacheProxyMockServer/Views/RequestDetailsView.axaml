@@ -14,7 +14,7 @@
 			<Label Content="Request" Margin="10 0 0 0"/>
 			<StackPanel Orientation="Horizontal" Margin="10" Spacing="5">
 				<TextBox Width="150"/>
-				<TextBox  Width="400"/>
+				<TextBox  Width="600"/>
 			</StackPanel>
 			<TextBox AcceptsReturn="True" TextWrapping="Wrap" Height="200" Margin="10 0 10 10"/>
 
