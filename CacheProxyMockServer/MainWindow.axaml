@@ -2,6 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:u="using:CacheProxyMockServer.Views"
         mc:Ignorable="d" Width="800" Height="500"
         x:Class="CacheProxyMockServer.MainWindow"
         Title="CacheProxyMockServer"
@@ -26,15 +27,18 @@
 
 
 		<!-- settings -->
-		<StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" Margin="20" Spacing="20" >
-			<TextBlock Text="Mode: " VerticalAlignment="Center"/>
-			<ComboBox x:Name="ModeCombo">
+		<DockPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" Margin="20" Spacing="20" >
+			<TextBlock Text="Mode: " VerticalAlignment="Center" DockPanel.Dock="Left"/>
+			<ComboBox x:Name="ModeCombo" DockPanel.Dock="Left">
 				<ComboBoxItem>Proxy</ComboBoxItem>
 				<ComboBoxItem>Cache</ComboBoxItem>
 			</ComboBox>
-			<TextBlock Text="Simulated Delay (Seconds): "  VerticalAlignment="Center"></TextBlock>
-			<NumericUpDown x:Name="DelayNumeric" Value="0" Increment="1" Minimum="0" Maximum="600" Width="150" FormatString="###"/>
-		</StackPanel>
+			<TextBlock Text="Simulated Delay (Seconds): "  VerticalAlignment="Center" DockPanel.Dock="Left"></TextBlock>
+			<NumericUpDown x:Name="DelayNumeric" DockPanel.Dock="Left"
+						   Value="0" Increment="1" Minimum="0" Maximum="600" Width="150" FormatString="###"/>
+
+			<u:PagingView x:Name="pagingView"></u:PagingView>
+		</DockPanel>
 
 		<!-- history items -->
 		<ListBox Grid.Column="0" Grid.Row="1" x:Name="historyItemsList" VerticalAlignment="Stretch" Margin="3 0 3 0">

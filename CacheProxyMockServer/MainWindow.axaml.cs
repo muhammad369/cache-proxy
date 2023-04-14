@@ -5,6 +5,7 @@ using CacheProxyMockServer.Repositories;
 using CacheProxyMockServer.ViewModels;
 using CacheProxyMockServer.Views;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -29,6 +30,8 @@ namespace CacheProxyMockServer
 				this.Hide();
 				e.Cancel = true;
 			};
+			pagingView.SetHandlers(pagingNextBtnClick, pagingPrevBtnClick);
+			//
 			this.Initialized += MainWindow_Initialized;
 			ModeCombo.SelectionChanged += ModeCombo_SelectionChanged;
 			DelayNumeric.ValueChanged += DelayNumeric_ValueChanged;
@@ -44,11 +47,28 @@ namespace CacheProxyMockServer
 			ModeCombo.SelectedIndex = uow.SettingsRepo.getMode()? 0: 1;
 		}
 
+		#region paging
+		int pageSize = 10;
+		int pageNumber = 1;
+		int total = 0;
 		public void RefreshHistory()
 		{
+			total = uow.HistoryItemsRepo.GetCount();
 			var historyItems = uow.HistoryItemsRepo.GetPage(0, 10);
 			historyItemsList.Items = historyItems.Select(h => new HistoryItemView(new HistoryItemViewModel(h)));
+			pagingView.SetData(1, 10, total);
 		}
+
+		private void pagingPrevBtnClick()
+		{
+			throw new NotImplementedException();
+		}
+
+		private void pagingNextBtnClick()
+		{
+			throw new NotImplementedException();
+		}
+		#endregion
 
 		private void DelayNumeric_TextInput(object? sender, Avalonia.Input.TextInputEventArgs e)
 		{

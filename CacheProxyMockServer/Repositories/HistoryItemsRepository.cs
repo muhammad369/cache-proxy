@@ -22,7 +22,10 @@ namespace CacheProxyMockServer.Repositories
 			return GetAll().OrderByDescending(h => h.Time).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
 		}
 
-
+		public int GetCount()
+		{
+			return GetAll().Count();
+		}
 
 	}
 }
