@@ -14,6 +14,7 @@ public partial class PagingView : UserControl
     {
         InitializeComponent();
 		//
+		txtPageNumber.IsReadOnly = true;
 		btnNext.Click += BtnNext_Click;
 		btnPrevious.Click += BtnPrevious_Click;
     }

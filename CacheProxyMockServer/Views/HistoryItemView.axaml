@@ -11,7 +11,7 @@
 		<TextBlock x:Name="txtTime" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" />
 		<TextBlock x:Name="txtLiveOrCache" Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" />
 
-		<Button x:Name="btnRule" Grid.Column="4" Grid.Row="0"  Content="Rule"/>
+		<Button x:Name="btnRule" Grid.Column="4" Grid.Row="0"  Content="Rule" Margin="0 0 5 0"/>
 		<Button x:Name="btnDetails" Grid.Column="5" Grid.Row="0"  Content="Details"/>
 		<!--<Button Click="ResendBtnClick"  Content="Resend"/>-->
 		

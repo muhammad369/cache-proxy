@@ -54,19 +54,30 @@ namespace CacheProxyMockServer
 		public void RefreshHistory()
 		{
 			total = uow.HistoryItemsRepo.GetCount();
-			var historyItems = uow.HistoryItemsRepo.GetPage(0, 10);
+			var historyItems = uow.HistoryItemsRepo.GetPage(1, 10);
 			historyItemsList.Items = historyItems.Select(h => new HistoryItemView(new HistoryItemViewModel(h)));
 			pagingView.SetData(1, 10, total);
 		}
 
 		private void pagingPrevBtnClick()
 		{
-			throw new NotImplementedException();
+			if (pageNumber == 1) return;
+			//
+			var historyItems = uow.HistoryItemsRepo.GetPage(pageNumber-1, 10);
+			historyItemsList.Items = historyItems.Select(h => new HistoryItemView(new HistoryItemViewModel(h)));
+			pagingView.SetData(pageNumber-1, 10, total);
+			pageNumber--;
 		}
 
 		private void pagingNextBtnClick()
 		{
-			throw new NotImplementedException();
+			var lastPage = total % pageSize ==0 ? total/pageSize : (total/pageSize) + 1;
+			if (pageNumber == lastPage) return;
+			//
+			var historyItems = uow.HistoryItemsRepo.GetPage(pageNumber+1, 10);
+			historyItemsList.Items = historyItems.Select(h => new HistoryItemView(new HistoryItemViewModel(h)));
+			pagingView.SetData(pageNumber + 1, 10, total);
+			pageNumber++;
 		}
 		#endregion
 
