@@ -1,4 +1,5 @@
 ﻿
+using CacheProxyMockServer.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -47,6 +48,21 @@ namespace CacheProxyMockServer.Models
 			h.MatchedRule = rule;
 			//
 			return h;
+		}
+
+		public static RequestDetailsViewModel ToViewModel(this HistoryItem h)
+		{
+			var vm = new RequestDetailsViewModel();
+			vm.Id = h.Id;
+			vm.Method = h.Method;
+			vm.Url = h.Url;
+			vm.RequestBody = h.RequestContent;
+			vm.RequestHeaders = h.RequestHeaders;
+			vm.ResponseContent = h.ResponseContent;
+			vm.ResponseReason = h.ResponseReason ?? "";
+			vm.ResponseHeaders = h.ResponseHeaders;
+			vm.ResponseStatus = h.ResponseStatus;
+			return vm;
 		}
 	}
 

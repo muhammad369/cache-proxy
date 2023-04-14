@@ -2,6 +2,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using CacheProxyMockServer.Models;
 using CacheProxyMockServer.ViewModels;
 using System;
 
@@ -29,8 +30,11 @@ public partial class HistoryItemView : UserControl
 		txtTime.Text = model.Time;
 		txtLiveOrCache.Text = model.FromCache ? "Cached" : "Live";
 		//
-		btnRule.Click += delegate { };
-		btnDetails.Click += delegate { };
+		btnRule.Click += delegate {  };
+		btnDetails.Click += delegate {
+			var reqDetails = MainWindow.Instance.uow.HistoryItemsRepo.GetById(model.Id);
+			new RequestDetailsView(reqDetails!.ToViewModel()).ShowDialog(MainWindow.Instance);
+		};
 	}
 
     

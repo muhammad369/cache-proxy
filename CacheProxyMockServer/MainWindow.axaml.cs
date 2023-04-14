@@ -75,7 +75,7 @@ namespace CacheProxyMockServer
 
 		private void MainWindow_Initialized(object? sender, System.EventArgs e)
 		{
-			//ModeCombo.SelectedIndex = 
+			
 		}
 
 		private void RulesBtnClick(object sender, RoutedEventArgs e)

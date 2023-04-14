@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using CacheProxyMockServer.Models;
 using System.Net.Http.Headers;
+using CacheProxyMockServer.ViewModels;
+using Microsoft.AspNetCore.Http.Headers;
 
 namespace CacheProxyMockServer.Http
 {
@@ -147,6 +149,29 @@ namespace CacheProxyMockServer.Http
 		public static string GetHeadersString(this HttpResponseMessage resp)
 		{
 			return string.Join("\n", resp.Headers.Select(h => $"{h.Key}:{string.Join(",", h.Value)}"));
+		}
+
+		public static string GetHeadersString(this List<HeaderItemViewModel> headersList)
+		{
+			return string.Join("\n", headersList.Select(h => $"{h.Key}:{string.Join(",", h.Value)}"));
+		}
+
+		public static List<HeaderItemViewModel> ToHeadersList(this string headersText)
+		{
+			var list = new List<HeaderItemViewModel>();
+
+			foreach (var header in headersText.Split("\n"))
+			{
+				var columnIndex = header.IndexOf(":");
+				if (columnIndex < 0) continue;
+				var key = header.Substring(0, columnIndex);
+				var value = header.Substring(columnIndex + 1);
+
+				//if (key == "Transfer-Encoding") continue;
+
+				list.Add(new HeaderItemViewModel(key, value));
+			}
+			return list;
 		}
 
 	}

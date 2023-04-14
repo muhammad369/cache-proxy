@@ -2,19 +2,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="400"
+             mc:Ignorable="d" 
              x:Class="CacheProxyMockServer.Views.HistoryItemView">
 
-	<StackPanel Orientation="Horizontal"  Spacing="2">
-		<TextBlock x:Name="txtMethod" VerticalAlignment="Center" Width="50"/>
-		<TextBlock x:Name="txtUrl" VerticalAlignment="Center" Width="400"/>
-		<TextBlock x:Name="txtTime" VerticalAlignment="Center" Width="150"/>
-		<TextBlock x:Name="txtLiveOrCache" VerticalAlignment="Center" Width="70"/>
+	<Grid RowDefinitions="28" ColumnDefinitions="50,1*,150,70,auto,auto" Margin="10 5 10 5">
+		<TextBlock x:Name="txtMethod" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" />
+		<TextBlock x:Name="txtUrl" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" />
+		<TextBlock x:Name="txtTime" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" />
+		<TextBlock x:Name="txtLiveOrCache" Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" />
 
-		<Button x:Name="btnRule"  Content="Rule"/>
-		<Button x:Name="btnDetails"  Content="Details"/>
+		<Button x:Name="btnRule" Grid.Column="4" Grid.Row="0"  Content="Rule"/>
+		<Button x:Name="btnDetails" Grid.Column="5" Grid.Row="0"  Content="Details"/>
 		<!--<Button Click="ResendBtnClick"  Content="Resend"/>-->
 		
-	</StackPanel>
+	</Grid>
 	
 </UserControl>

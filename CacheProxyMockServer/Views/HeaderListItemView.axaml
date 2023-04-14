@@ -2,11 +2,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             mc:Ignorable="d" 
              x:Class="CacheProxyMockServer.Views.HeaderListItemView">
-	<StackPanel Orientation="Horizontal">
-		<TextBlock x:Name="txtKey" Width="200"></TextBlock>
-		<TextBlock x:Name="txtValue" Width="500"></TextBlock>
-		<Button x:Name="btnShow" Content="Show"></Button>
-	</StackPanel>
+	<Grid RowDefinitions="auto" ColumnDefinitions="auto 1* auto" >
+		<TextBlock x:Name="txtKey" Width="100" Margin="0 0 10 0" Grid.Column="0" Grid.Row="0"
+				   TextWrapping="Wrap" MaxLines="2"></TextBlock>
+		<TextBlock x:Name="txtValue" Grid.Column="1" Grid.Row="0" 
+				   TextWrapping="WrapWithOverflow" MaxLines="3"></TextBlock>
+		<Button x:Name="btnShow" Content="Show" Grid.Column="2" Grid.Row="0"></Button>
+	</Grid>
 </UserControl>

@@ -2,23 +2,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="700" 
+        mc:Ignorable="d" Width="500" Height="500"
         x:Class="CacheProxyMockServer.Views.HeaderEditView"
         Title="Header">
-	<StackPanel >
-		<Label Content="Key: " Margin="10 10 0 0"/>
+	<Grid ColumnDefinitions="auto,1*,auto" RowDefinitions="auto, auto, auto, 1*, auto">
+		<Label Content="Key: " Grid.Column="0" Grid.Row="0" Margin="10 10 0 0"/>
 		
-		<TextBox x:Name="txtKey"  Margin="10 0 10 10"/>
+		<TextBox x:Name="txtKey" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Margin="10 0 10 10"/>
 
-		<Label Content="Value: " Margin="10 0 0 0"/>
-		<TextBox x:Name="txtValue" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
-				 ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" 
-				 TextWrapping="Wrap" Height="200" Margin="10 0 10 10"/>
+		<Label Content="Value: " Grid.Column="0" Grid.Row="2" Margin="10 0 0 0"/>
+		<TextBox x:Name="txtValue" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" 
+				 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+				 ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="false" 
+				 TextWrapping="Wrap"  Margin="10 0 10 10"/>
 
-		<StackPanel Orientation="Horizontal" Margin="10 0 10 10" HorizontalAlignment="Center" >
-			<Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left"></Button>
-			<TextBlock Width="550"  HorizontalAlignment="Left"></TextBlock>
-			<Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left"></Button>
-		</StackPanel>
-	</StackPanel>
+		<Button x:Name="btnSave" Content="Save" Grid.Column="0" Grid.Row="4" Margin="10"></Button>
+			
+		<Button x:Name="btnClose" Content="Close" Grid.Column="2" Grid.Row="4" Margin="10"></Button>
+		
+	</Grid>
 </Window>

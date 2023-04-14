@@ -2,29 +2,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" 
+			 xmlns:u="using:CacheProxyMockServer.Views"
+             mc:Ignorable="d" Width="900" Height="800"
              x:Class="CacheProxyMockServer.Views.RequestDetailsView"
-			 TransparencyLevelHint="AcrylicBlur"
-			Background="Transparent"
-			ExtendClientAreaToDecorationsHint="True"
+			
+			 ExtendClientAreaToDecorationsHint="True"
+		ScrollViewer.VerticalScrollBarVisibility="Auto"
 			>
 
 	
-		<StackPanel >
-			<Label Content="Request" Margin="10 0 0 0"/>
-			<StackPanel Orientation="Horizontal" Margin="10" Spacing="5">
-				<TextBox Width="150"/>
-				<TextBox  Width="600"/>
-			</StackPanel>
-			<TextBox AcceptsReturn="True" TextWrapping="Wrap" Height="200" Margin="10 0 10 10"/>
-
-			<Label Content="Response" Margin="10 0 0 0"/>
+		<Grid RowDefinitions="auto auto auto 4 auto auto auto" ColumnDefinitions="*">
+			<Label Content="Request" Grid.Column="0" Grid.Row="0" Margin="10"/>
 			
-			<StackPanel Orientation="Horizontal" Margin="10">
-				<TextBox Width="150"/>
-			</StackPanel>
-			<TextBox AcceptsReturn="True" TextWrapping="Wrap" Height="200" Margin="10 0 10 10"/>
-		</StackPanel>
+			<Grid  Margin="10 0" RowDefinitions="auto" ColumnDefinitions="auto 1*" 
+				   Grid.Column="0" Grid.Row="1">
+				<TextBox x:Name="txtMethod" Grid.Column="0" Grid.Row="0" Width="100" Margin="0 0 10 0"/>
+				<TextBox x:Name="txtUrl" Grid.Column="1" Grid.Row="0" />
+			</Grid>
+
+			<Grid Margin="10" RowDefinitions="auto" ColumnDefinitions="1* 1*" 
+				   Grid.Column="0" Grid.Row="2"  >
+				<u:HeadersView x:Name="headersReq" Grid.Column="0" Grid.Row="0" Height="300" Margin="0 0 10 0"></u:HeadersView>
+				<TextBox x:Name="txtReqBody" Grid.Column="1" Grid.Row="0" AcceptsReturn="True" TextWrapping="Wrap" 
+						 ScrollViewer.VerticalScrollBarVisibility="Auto" Height="300"/>
+			</Grid>
+
+			<!--
+			<GridSplitter Grid.Row="3" Background="AliceBlue" ResizeDirection="Rows"></GridSplitter>
+			-->
+
+			<Rectangle  Grid.Row="3" Grid.Column="0" Fill="LightGray"></Rectangle>
+			
+			<Label Grid.Column="0" Grid.Row="4" Content="Response" Margin="10"/>
+			
+			<Grid  Margin="10 0" RowDefinitions="auto" ColumnDefinitions="auto 1*"
+				   Grid.Column="0" Grid.Row="5">
+				<TextBox x:Name="txtResStatus" Grid.Column="0" Grid.Row="0" Margin="0 0 10 0"/>
+				<TextBox x:Name="txtResReason" Grid.Column="1" Grid.Row="0"/>
+			</Grid>
+
+			<Grid  Margin="10" RowDefinitions="auto" ColumnDefinitions="1* 1*"
+				   Grid.Column="0" Grid.Row="6">
+				<u:HeadersView x:Name="headersRes" Grid.Column="0" Grid.Row="0" Height="300" Margin="0 0 10 0"></u:HeadersView>
+				<TextBox x:Name="txtResBody" Grid.Column="1" Grid.Row="0" AcceptsReturn="True" TextWrapping="Wrap" 
+				ScrollViewer.VerticalScrollBarVisibility="Auto" Height="300"/>
+			</Grid>
+			
+		</Grid>
 	
 	
 	

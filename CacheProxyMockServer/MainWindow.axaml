@@ -2,24 +2,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" Width="800" Height="500"
         x:Class="CacheProxyMockServer.MainWindow"
         Title="CacheProxyMockServer"
 		TransparencyLevelHint="Blur"
-		Background="Transparent"
+		
 		ExtendClientAreaToDecorationsHint="True"
 		Icon="/Assets/logo.ico"
 		ShowInTaskbar="False"
-		Topmost="True"
+		Topmost="false"
 		Opacity="1"
-		SizeToContent="Width"
 		ShowActivated="True"
 		>
-	<DockPanel >
+	<Grid ColumnDefinitions="1*"  RowDefinitions="auto,1*,auto">
 
 		<!-- buttons -->
 
-		<StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="20" Spacing="20" >
+		<StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="20" Spacing="20" >
 			<Button Click="RulesBtnClick"  Content=" Rules " ></Button>
 
 		</StackPanel>
@@ -27,7 +26,7 @@
 
 
 		<!-- settings -->
-		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="20" Spacing="20" >
+		<StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" Margin="20" Spacing="20" >
 			<TextBlock Text="Mode: " VerticalAlignment="Center"/>
 			<ComboBox x:Name="ModeCombo">
 				<ComboBoxItem>Proxy</ComboBoxItem>
@@ -38,9 +37,9 @@
 		</StackPanel>
 
 		<!-- history items -->
-		<ListBox x:Name="historyItemsList" Items="{Binding historyItems}" VerticalAlignment="Stretch" Margin="10 0 10 0">
+		<ListBox Grid.Column="0" Grid.Row="1" x:Name="historyItemsList" VerticalAlignment="Stretch" Margin="3 0 3 0">
 
 		</ListBox>
 
-	</DockPanel>
+	</Grid>
 </Window>
