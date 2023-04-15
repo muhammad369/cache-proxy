@@ -25,5 +25,15 @@ namespace CacheProxyMockServer.Repositories
 								&& (r.RequestBody ?? "") == content
 								);
 		}
+
+		public int GetCount(string searchUrl)
+		{
+			return GetAll().Where(r=> r.Url.Contains(searchUrl)).Count();
+		}
+
+		public List<Rule> Search(string  searchUrl, int pgNumber, int pgSize)
+		{
+			return FindBy(r => r.Url.Contains(searchUrl), pgNumber, pgSize).ToList();
+		}
 	}
 }

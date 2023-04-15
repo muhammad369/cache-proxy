@@ -72,7 +72,7 @@ namespace CacheProxyMockServer
 		private void pagingNextBtnClick()
 		{
 			var lastPage = total % pageSize ==0 ? total/pageSize : (total/pageSize) + 1;
-			if (pageNumber == lastPage) return;
+			if (pageNumber >= lastPage) return;
 			//
 			var historyItems = uow.HistoryItemsRepo.GetPage(pageNumber+1, 10);
 			historyItemsList.Items = historyItems.Select(h => new HistoryItemView(new HistoryItemViewModel(h)));
@@ -111,7 +111,7 @@ namespace CacheProxyMockServer
 
 		private void RulesBtnClick(object sender, RoutedEventArgs e)
 		{
-
+			new RulesView().ShowDialog(this);
 		}
 	}
 }

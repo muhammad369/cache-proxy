@@ -15,8 +15,8 @@ public partial class HeadersView : UserControl
         InitializeComponent();
     }
 
-	public void SetChildren(List<HeaderItemViewModel> headerItemViewModels, bool editable)
+	public void SetChildren(List<HeaderItemViewModel> headerItemViewModels, bool editable, Window window)
 	{
-		this.headersList.Items = headerItemViewModels.Select(h => new HeaderListItemView(h, editable));
+		this.headersList.Items = headerItemViewModels.Select(h => new HeaderListItemView(h, editable, window));
 	}
 }

@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" Width="500" Height="500"
         x:Class="CacheProxyMockServer.Views.HeaderEditView"
+		ShowInTaskbar="False"
         Title="Header">
 	<Grid ColumnDefinitions="auto,1*,auto" RowDefinitions="auto, auto, auto, 1*, auto">
 		<Label Content="Key: " Grid.Column="0" Grid.Row="0" Margin="10 10 0 0"/>

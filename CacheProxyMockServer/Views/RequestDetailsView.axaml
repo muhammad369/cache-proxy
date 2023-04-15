@@ -5,7 +5,7 @@
 			 xmlns:u="using:CacheProxyMockServer.Views"
              mc:Ignorable="d" Width="900" Height="800"
              x:Class="CacheProxyMockServer.Views.RequestDetailsView"
-			
+			ShowInTaskbar="False"
 			 ExtendClientAreaToDecorationsHint="True"
 		ScrollViewer.VerticalScrollBarVisibility="Auto"
 			>

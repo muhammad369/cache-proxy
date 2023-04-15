@@ -1,0 +1,38 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:u="using:CacheProxyMockServer.Views"
+        mc:Ignorable="d" Width="800" Height="600"
+        x:Class="CacheProxyMockServer.Views.RulesView"
+		ShowInTaskbar="False"
+        Title="Rules">
+
+	<Grid ColumnDefinitions="1*"  RowDefinitions="auto,1*,auto">
+
+		<!-- search -->
+
+		<StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="20" Spacing="20" >
+			<TextBox x:Name="txtSearch" Watermark="URL Search" Width="500"></TextBox>
+			<Button x:Name="btnSearch">
+				Search
+			</Button>
+		</StackPanel>
+
+
+
+		<!-- btns and paging -->
+		<Grid RowDefinitions="auto" ColumnDefinitions="auto 1* auto" Grid.Column="0" Grid.Row="2"  Margin="20"  >
+			<Button Name="btnAddRule" Content="Add Rule" ></Button>
+			<Rectangle Grid.Column="1"></Rectangle>
+			<u:PagingView x:Name="pagingView" Grid.Column="2"></u:PagingView>
+		</Grid>
+
+		<!-- rule items -->
+		<ListBox Grid.Column="0" Grid.Row="1" x:Name="rulesList" VerticalAlignment="Stretch" Margin="3 0 3 0">
+
+		</ListBox>
+
+	</Grid>
+	
+</Window>

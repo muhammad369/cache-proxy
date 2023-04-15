@@ -25,12 +25,12 @@ public partial class RequestDetailsView : Window
         //
         this.txtMethod.Text = model.Method;
         this.txtUrl.Text = model.Url;
-        this.headersReq.SetChildren( model.RequestHeaders.ToHeadersList(), false);
+        this.headersReq.SetChildren( model.RequestHeaders.ToHeadersList(), false, this);
         this.txtReqBody.Text = model.RequestBody;
         //
         this.txtResStatus.Text = model.ResponseStatus.ToString();
         this.txtResReason.Text = model.ResponseReason;
-        this.headersRes.SetChildren(model.ResponseHeaders.ToHeadersList(), false);
+        this.headersRes.SetChildren(model.ResponseHeaders.ToHeadersList(), false, this);
         this.txtResBody.Text = model.ResponseContent;
     }
 }

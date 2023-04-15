@@ -11,7 +11,7 @@ public partial class HeaderListItemView : UserControl
 
 	public HeaderListItemView() { }
 
-	public HeaderListItemView(HeaderItemViewModel header, bool editable)
+	public HeaderListItemView(HeaderItemViewModel header, bool editable, Window window)
     {
         InitializeComponent();
         //
@@ -21,7 +21,7 @@ public partial class HeaderListItemView : UserControl
         if (editable) btnShow.Content = "Edit";
         btnShow.Click += delegate 
         {
-            new HeaderEditView(header, editable).Show();
+            new HeaderEditView(header, editable).ShowDialog(window);
         };
     }
 }

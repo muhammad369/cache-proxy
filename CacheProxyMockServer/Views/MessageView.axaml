@@ -1,0 +1,16 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" Width="400" Height="170"
+		
+        x:Class="CacheProxyMockServer.Views.MessageView"
+        Title="MessageView">
+	<Grid Margin="10" ColumnDefinitions="200,200*" RowDefinitions="100, 60">
+		<TextBlock Name="txtMessage" Margin="20" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="25" 
+				   HorizontalAlignment="Center"
+				   >Are you sure?</TextBlock>
+		<Button Name="btnYes" Margin="10" FontSize="20" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">Yes</Button>
+		<Button Name="btnNo" Margin="10" FontSize="20" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">No</Button>
+	</Grid>
+</Window>
