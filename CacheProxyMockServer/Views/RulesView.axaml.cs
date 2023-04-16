@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using CacheProxyMockServer.Models;
 using CacheProxyMockServer.ViewModels;
 using System;
 using System.Linq;
@@ -29,8 +30,17 @@ public partial class RulesView : Window
 	{
 		total = MainWindow.Instance.uow.RulesRepo.GetCount(txtSearch.Text ?? "");
 		var rules = MainWindow.Instance.uow.RulesRepo.Search(txtSearch.Text ?? "",1, 10);
-		rulesList.Items = rules.Select(r => new RuleItemView(new RuleItemViewModel(r), ()=> DeleteRule(r.Id)));
+		rulesList.Items = rules.Select(r => new RuleItemView(new RuleItemViewModel(r), ()=> DeleteRule(r.Id), ()=> EditRule(r.Id)));
 		pagingView.SetData(1, 10, total);
+	}
+
+	private async void EditRule(int id)
+	{
+		var model = MainWindow.Instance.uow.RulesRepo.GetById(id);
+		await(new RuleDetailsView(model).ShowDialog<Rule?>(this));
+		//
+		//
+		refreshRulesList();
 	}
 
 	private void pagingPrevBtnClick()
@@ -39,7 +49,7 @@ public partial class RulesView : Window
 		//
 		total = MainWindow.Instance.uow.RulesRepo.GetCount(txtSearch.Text ?? "");
 		var rules = MainWindow.Instance.uow.RulesRepo.Search(txtSearch.Text ?? "", pageNumber - 1, 10);
-		rulesList.Items = rules.Select(r => new RuleItemView(new RuleItemViewModel(r), () => DeleteRule(r.Id)));
+		rulesList.Items = rules.Select(r => new RuleItemView(new RuleItemViewModel(r), () => DeleteRule(r.Id), () => EditRule(r.Id)));
 		//
 		pagingView.SetData(pageNumber - 1, 10, total);
 		pageNumber--;
@@ -52,7 +62,7 @@ public partial class RulesView : Window
 		//
 		total = MainWindow.Instance.uow.RulesRepo.GetCount(txtSearch.Text ?? "");
 		var rules = MainWindow.Instance.uow.RulesRepo.Search(txtSearch.Text ?? "", pageNumber + 1, 10);
-		rulesList.Items = rules.Select(r => new RuleItemView(new RuleItemViewModel(r), () => DeleteRule(r.Id)));
+		rulesList.Items = rules.Select(r => new RuleItemView(new RuleItemViewModel(r), () => DeleteRule(r.Id), () => EditRule(r.Id)));
 		//
 		pagingView.SetData(pageNumber + 1, 10, total);
 		pageNumber++;
@@ -71,9 +81,12 @@ public partial class RulesView : Window
 		refreshRulesList();
 	}
 
-	private void BtnAddRule_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+	private async void BtnAddRule_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
 	{
-		new RuleDetailsView().ShowDialog(this);
+		var rule = await(new RuleDetailsView(null).ShowDialog<Rule?>(this));
+		//
+		//
+		refreshRulesList();
 	}
 
 	private void BtnSearch_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)

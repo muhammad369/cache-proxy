@@ -4,13 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
              x:Class="CacheProxyMockServer.Views.RuleItemView">
-	<Grid RowDefinitions="28" ColumnDefinitions="50,1*, 1*, 40, 90, 50, 60" Margin="10 5 10 5">
+	<Grid RowDefinitions="28" ColumnDefinitions="50,1*, 1*, 40, 100, 50, 60" Margin="10 5 10 5">
 		<TextBlock x:Name="txtMethod" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" Text="Post" />
 		<TextBlock x:Name="txtUrl" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Text="url" Margin="0 0 5 0"/>
 		<TextBlock x:Name="txtBody" TextWrapping="Wrap" MaxLines="2" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Margin="0 0 5 0"/>
 		<Image x:Name="imgActive" Height="20" Source="/Assets/check-64.png" Grid.Column="3" Grid.Row="0" VerticalAlignment="Center" Margin="0 0 5 0"/>
 
-		<Button x:Name="btnActivate" Grid.Column="4" Grid.Row="0"  Content="Activate" Margin="0 0 5 0"/>
+		<Button x:Name="btnActivate" Grid.Column="4" Grid.Row="0"  Content="Deactivate" Margin="0 0 5 0"/>
 		<Button x:Name="btnEdit" Grid.Column="5" Grid.Row="0"  Content="Edit" Margin="0 0 5 0"/>
 		<Button x:Name="btnDelete" Grid.Column="6" Grid.Row="0"  Content="Delete" />
 	</Grid>

@@ -2,9 +2,54 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		xmlns:u="using:CacheProxyMockServer.Views"
+        mc:Ignorable="d" Width="800" Height="800"
         x:Class="CacheProxyMockServer.Views.RuleDetailsView"
 		ShowInTaskbar="False"
-        Title="RuleDetailsView">
-  Welcome to Avalonia!
+        Title="Rule">
+	<Grid RowDefinitions="auto auto auto 4 auto auto auto auto" ColumnDefinitions="*">
+		<Label Content="Request Rule" Grid.Column="0" Grid.Row="0" Margin="10"/>
+
+		<Grid  Margin="10 0" RowDefinitions="auto" ColumnDefinitions="auto 1*"
+			   Grid.Column="0" Grid.Row="1">
+			<DropDown x:Name="txtMethod" Grid.Column="0" Grid.Row="0" Width="100" Margin="0 0 10 0"/>
+			<TextBox x:Name="txtUrl" Grid.Column="1" Grid.Row="0" />
+		</Grid>
+
+		<TextBox x:Name="txtReqBody" Grid.Column="0" Grid.Row="2" AcceptsReturn="True" TextWrapping="Wrap"
+				Margin="10" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="250"/>
+		
+
+		<!--
+			<GridSplitter Grid.Row="3" Background="AliceBlue" ResizeDirection="Rows"></GridSplitter>
+			-->
+
+		<Rectangle  Grid.Row="3" Grid.Column="0" Fill="LightGray"></Rectangle>
+
+		<Label Grid.Column="0" Grid.Row="4" Content="Response" Margin="10"/>
+
+		<Grid  Margin="10 0" RowDefinitions="auto" ColumnDefinitions="auto 1* auto 200"
+			   Grid.Column="0" Grid.Row="5">
+			<TextBox x:Name="txtResStatus" Grid.Column="0" Grid.Row="0" Margin="0 0 10 0"/>
+			<TextBox x:Name="txtResReason" Grid.Column="1" Grid.Row="0"/>
+			<Label Margin="5 0" Grid.Column="2" VerticalAlignment="Center">Content-Type</Label>
+			<TextBox x:Name="txtContentType" Grid.Column="3" Grid.Row="0"/>
+		</Grid>
+
+		<Grid  Margin="10" RowDefinitions="auto" ColumnDefinitions="1* 1*"
+			   Grid.Column="0" Grid.Row="6">
+			<u:HeadersView x:Name="headersRes" Grid.Column="0" Grid.Row="0" Height="310" Margin="0 0 10 0"></u:HeadersView>
+			<TextBox x:Name="txtResBody" Grid.Column="1" Grid.Row="0" AcceptsReturn="True" TextWrapping="Wrap"
+			ScrollViewer.VerticalScrollBarVisibility="Auto" Height="310"/>
+		</Grid>
+
+		<Grid ColumnDefinitions="100,1*, 80, 70" Grid.Column="0" Grid.Row="7" Margin="10 0">
+			<Button x:Name="btnAddHeader" Content="Add Header" Grid.Column="0" ></Button>
+			<Rectangle Grid.Column="1"></Rectangle>
+			<Button x:Name="btnSave" Content="Save" Grid.Column="2" ></Button>
+
+			<Button x:Name="btnClose" Content="Close" Grid.Column="3" Grid.Row="4" ></Button>
+
+		</Grid>
+	</Grid>
 </Window>

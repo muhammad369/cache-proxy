@@ -160,6 +160,8 @@ namespace CacheProxyMockServer.Http
 		{
 			var list = new List<HeaderItemViewModel>();
 
+			if (headersText == null) return list;
+
 			foreach (var header in headersText.Split("\n"))
 			{
 				var columnIndex = header.IndexOf(":");

@@ -45,6 +45,8 @@ namespace CacheProxyMockServer
 			RefreshHistory();
 			DelayNumeric.Value = uow.SettingsRepo.getDelay();
 			ModeCombo.SelectedIndex = uow.SettingsRepo.getMode()? 0: 1;
+			//
+
 		}
 
 		#region paging

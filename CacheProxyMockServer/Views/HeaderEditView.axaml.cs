@@ -12,10 +12,10 @@ public partial class HeaderEditView : Window
 
 	public HeaderEditView() { }
 
-	public HeaderEditView(HeaderItemViewModel header, bool editable)
+	public HeaderEditView(HeaderItemViewModel? h, bool editable)
     {
         InitializeComponent();
-        this.header = header;
+        this.header = h ?? new HeaderItemViewModel("","");
         //
         txtKey.Text = header.Key;
         txtValue.Text = header.Value;
@@ -39,7 +39,7 @@ public partial class HeaderEditView : Window
 	private void BtnSave_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
 	{
         header.Key = txtKey.Text;
-        header.Value = txtKey.Text;    
+        header.Value = txtValue.Text;    
 		Close(header);
 	}
 }

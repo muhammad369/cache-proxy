@@ -28,7 +28,7 @@ public partial class RuleItemView : UserControl
         InitializeComponent();
     }
 
-    public RuleItemView(RuleItemViewModel vm, Action deleteCallback)
+    public RuleItemView(RuleItemViewModel vm, Action deleteCallback, Action editCallback)
     {
         InitializeComponent();
         this.vm = vm;
@@ -36,7 +36,7 @@ public partial class RuleItemView : UserControl
 		// btn events
 		btnActivate.Click += BtnActivate_Click;
 		btnDelete.Click += delegate { deleteCallback(); };
-		btnEdit.Click += BtnEdit_Click;
+		btnEdit.Click += delegate { editCallback(); };
 		// display
 		display();
 	}
@@ -51,11 +51,6 @@ public partial class RuleItemView : UserControl
 
 	}
 
-	private void BtnEdit_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
-	{
-		var model = MainWindow.Instance.uow.RulesRepo.GetById(vm.Id);
-
-	}
 
 
 	private void BtnActivate_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
