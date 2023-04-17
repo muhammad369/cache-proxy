@@ -30,7 +30,10 @@ public partial class HistoryItemView : UserControl
 		txtTime.Text = model.Time;
 		txtLiveOrCache.Text = model.FromCache ? "Cached" : "Live";
 		//
-		btnRule.Click += delegate {  };
+		btnRule.Click += delegate { 
+			var rule = MainWindow.Instance.uow.RulesRepo.GetById(model.MatchedRuleId);
+			new RuleDetailsView(rule).ShowDialog(MainWindow.Instance);
+		};
 		btnDetails.Click += delegate {
 			var reqDetails = MainWindow.Instance.uow.HistoryItemsRepo.GetById(model.Id);
 			new RequestDetailsView(reqDetails!.ToViewModel()).ShowDialog(MainWindow.Instance);

@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Controls.Chrome;
 using Avalonia.Interactivity;
+using Avalonia.Threading;
 using CacheProxyMockServer.Repositories;
 using CacheProxyMockServer.ViewModels;
 using CacheProxyMockServer.Views;
@@ -22,7 +23,7 @@ namespace CacheProxyMockServer
 		{
 			Instance = this;
 			//
-			uow = new UnitOfWork(new Models.AppDbContext());
+			uow = new UnitOfWork();// new Models.AppDbContext());
 			//
 			InitializeComponent();
 			this.Closing += (s, e) =>
@@ -53,7 +54,12 @@ namespace CacheProxyMockServer
 		int pageSize = 10;
 		int pageNumber = 1;
 		int total = 0;
-		public void RefreshHistory()
+		public async void RefreshHistory()
+		{
+			await Dispatcher.UIThread.InvokeAsync(async () => _refreshHistory());
+		}
+
+		void _refreshHistory()
 		{
 			total = uow.HistoryItemsRepo.GetCount();
 			var historyItems = uow.HistoryItemsRepo.GetPage(1, 10);

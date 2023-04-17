@@ -10,7 +10,7 @@ namespace CacheProxyMockServer.Repositories
 {
 	public class UnitOfWork
 	{
-		private readonly AppDbContext dc;
+		private static AppDbContext dc;
 
 		public HistoryItemsRepository HistoryItemsRepo { get; }
 		public RulesRepository RulesRepo { get; }
@@ -18,9 +18,9 @@ namespace CacheProxyMockServer.Repositories
 		public SettingsRepository SettingsRepo { get; }
 
 
-		public UnitOfWork(AppDbContext dc)
+		public UnitOfWork()//AppDbContext dc)
 		{
-			this.dc = dc;
+			if(dc == null) dc = new AppDbContext();
 			//
 			this.HistoryItemsRepo = new HistoryItemsRepository(dc);
 			this.RulesRepo = new RulesRepository(dc);
@@ -30,7 +30,7 @@ namespace CacheProxyMockServer.Repositories
 
 		public void Save()
 		{
-			this.dc.SaveChanges();
+			dc.SaveChanges();
 		}
 
 	}
