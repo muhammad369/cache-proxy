@@ -19,7 +19,7 @@
 
 		<!-- buttons -->
 
-		<StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="20" Spacing="20" >
+		<StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="20 40 20 20" Spacing="20" >
 			<Button Click="RulesBtnClick"  Content=" Rules " ></Button>
 
 		</StackPanel>

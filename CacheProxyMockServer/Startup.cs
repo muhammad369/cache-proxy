@@ -14,12 +14,10 @@ namespace CacheProxyMockServer
 {
 	public class Startup
 	{
-		//public static ServiceProvider services;
-
+		
 		public void ConfigureServices(IServiceCollection services)
 		{
-			//Startup.services = services.BuildServiceProvider();
-			//
+			
 			services.AddControllers();
 			services.AddHttpClient();
 			//

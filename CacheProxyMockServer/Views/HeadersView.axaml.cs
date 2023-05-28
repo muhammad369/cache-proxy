@@ -1,12 +1,15 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using Avalonia.Threading;
 using Avalonia.VisualTree;
 using CacheProxyMockServer.ViewModels;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace CacheProxyMockServer.Views;
 
@@ -32,23 +35,26 @@ public partial class HeadersView : UserControl
 		this.editable = editable;
 	}
 
-	private void removeHeader(HeaderItemViewModel h)
+	private async void removeHeader(HeaderItemViewModel h)
 	{
 		items.Remove(h);
-		headersList.Items = items
-			.Select(h => new HeaderListItemView(h, editable, editHeader, removeHeader));
+		await Dispatcher.UIThread.InvokeAsync(async () => _refeshItems());
 	}
 
-	private void editHeader(HeaderItemViewModel h)
+	private async void editHeader(HeaderItemViewModel h)
 	{
 		new HeaderEditView(h, editable).ShowDialog(window);
-		headersList.Items = items
-			.Select(h => new HeaderListItemView(h, editable, editHeader, removeHeader));
+		await Dispatcher.UIThread.InvokeAsync(async () => _refeshItems());
 	}
 
-	public void AddHeader(HeaderItemViewModel h)
+	public async void AddHeader(HeaderItemViewModel h)
 	{
 		this.items.Add(h);
+		await Dispatcher.UIThread.InvokeAsync(async () => _refeshItems());
+	}
+
+	async void _refeshItems()
+	{
 		headersList.Items = items
 			.Select(h => new HeaderListItemView(h, editable, editHeader, removeHeader));
 	}

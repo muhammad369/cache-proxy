@@ -4,6 +4,6 @@
              x:Class="CacheProxyMockServer.App">
 
     <Application.Styles>
-        <FluentTheme Mode="Dark"/>
+        <FluentTheme Mode="Light"/>
     </Application.Styles>
 </Application>
