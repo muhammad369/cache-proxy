@@ -11,6 +11,7 @@
     <None Remove="Assets\check-64.png" />
     <None Remove="Assets\logo.ico" />
     <None Remove="Assets\uncheck-64.png" />
+    <None Remove="db.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <AvaloniaResource Include="Assets\check-64.png" />
@@ -45,4 +46,7 @@
   </ItemGroup>
 
  
+  <ItemGroup>
+    <Content Include="db.sqlite" />
+  </ItemGroup>
 </Project>

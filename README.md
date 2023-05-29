@@ -11,6 +11,7 @@ Implemented in .Net 6, UI created using [AvaloniaUI]([Avalonia UI - Home](https:
 - it's a desktop app, launches a self-hosted server on port 1234, that's why it must run as administrator 
 - configure the Browser app to preceed every url with 'http://localhost:1234?url=' 
 - cache is not in use by default, enable it by right clicking the icon in the system tray or by the button on the form
+- to run on Mac, go to the build folder and run `dotnet CacheProxyMockServer.dll`
 
 
 ### TO DO:
