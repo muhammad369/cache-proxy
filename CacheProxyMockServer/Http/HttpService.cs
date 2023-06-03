@@ -24,8 +24,7 @@ namespace CacheProxyMockServer.Http
 
 			try
 			{
-				var request1 = new HttpRequestMessage(HttpMethod.Get, "https://google.com");
-				return _httpClient.SendAsync(request1);
+				return _httpClient.SendAsync(request);
 			}
 			catch (Exception ex)
 			{

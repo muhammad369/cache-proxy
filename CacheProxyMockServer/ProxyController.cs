@@ -24,11 +24,13 @@ namespace CacheProxyMockServer
 		/// <summary>
 		/// Is proxy or cache
 		/// </summary>
-		public static bool IsProxy = false;
+		public static bool IsProxy = true;
 		/// <summary>
 		/// Simulated delay in seconds
 		/// </summary>
 		public static int SimulatedDelay = 2;
+
+		//TODO: remove static values
 
 		//
 		readonly IHttpService http;
