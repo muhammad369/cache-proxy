@@ -19,7 +19,7 @@ namespace CacheProxyMockServer
 		{
 			
 			services.AddControllers();
-			services.AddHttpClient();
+			//services.AddHttpClient();
 			//
 			services.AddScoped<IHttpService, HttpService>();
 			services.AddScoped<UnitOfWork, UnitOfWork>();
