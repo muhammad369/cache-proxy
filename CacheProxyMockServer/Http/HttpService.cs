@@ -25,8 +25,8 @@ namespace CacheProxyMockServer.Http
 				SslProtocols = SslProtocols.Tls12 | SslProtocols.Tls11 | SslProtocols.Tls
 			};
 			handler.ServerCertificateCustomValidationCallback = ValidateServerCertificate;
-			handler.ClientCertificateOptions = ClientCertificateOption.Manual;
-			handler.ClientCertificates.Add(new X509Certificate2("cert.crt"));
+			//handler.ClientCertificateOptions = ClientCertificateOption.Manual;
+			//handler.ClientCertificates.Add(new X509Certificate2("cert.crt"));
 
 			_httpClient = new HttpClient(handler);
 

@@ -47,6 +47,8 @@
 
  
   <ItemGroup>
-    <Content Include="db.sqlite" />
+    <Content Include="db.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

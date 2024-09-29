@@ -47,11 +47,11 @@ namespace CacheProxyMockServer.Models
 			rule.Method = req.Method.ToString();
 			rule.Url = req.RequestUri?.AbsoluteUri;
 			rule.IsActive = true;
-			rule.RequestBody = await req.Content.ReadAsStringAsync();
+			rule.RequestBody = await req.Content?.ReadAsStringAsync();
 			rule.ResponseStatus = (int)resp.StatusCode;
 			rule.ResponseReason = resp.ReasonPhrase;
 			rule.ResponseContent = await resp.Content.ReadAsStringAsync();
-			rule.ResponseContentType = resp.Content.Headers.ContentType.ToString();
+			rule.ResponseContentType = resp.Content.Headers.ContentType?.ToString();
 			rule.ResponseHeaders = resp.GetHeadersString();
 			//
 			return rule;
